@@ -23,6 +23,12 @@ function criarElementoTarefa(tarefa){
 
     const botao = document.createElement('button')
     botao.classList.add('app_button-edit')
+
+    botao.onclick = () =>{
+        const novaDescricao = prompt("Qual o novo nome da tarefa? ")
+        paragrafo.textContent = novaDescricao
+    }
+
     const imagemBotao = document.createElement('img')
 //
     imagemBotao.setAttribute('src', 'imagens/edit.png')
@@ -45,7 +51,13 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
         descricao: textArea.value
     }
     tarefas.push(tarefa)
+    const elementoTarefa = criarElementoTarefa(tarefa)
+    ulTarefas.append(elementoTarefa)
+
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
+
+    textArea.value = ''
+    formAdicionarTarefa.classList.add('hidden')
 
 })
 //percorrer a lista de tarefas e chamar a função criarElementoTarefa
